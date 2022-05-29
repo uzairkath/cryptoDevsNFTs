@@ -1,24 +1,21 @@
-const {ethers} = require("hardhat");
-require("dotenv").config({path: ".env"});
-const {WHITELIST_CONTRACT_ADDRESS, METADATA_URL} = require("../constants");
+const { ethers } = require('hardhat');
+require('dotenv').config({ path: '.env' });
+const { WHITELIST_CONTRACT_ADDRESS, METADATA_URL } = require('../constants');
 
-async function main(){
-    const whitelistContract = WHITELIST_CONTRACT_ADDRESS;
+async function main() {
+	const whitelistContract = WHITELIST_CONTRACT_ADDRESS;
 
-    const metadataUrl = METADATA_URL;
+	const metadataUrl = METADATA_URL;
 
-    const cryptoDevsContract = await ethers.getContractFactory("CrytpoDevs");
+	const cryptoDevsContract = await ethers.getContractFactory('CrytpoDevs');
 
-    const deployedContract = await cryptoDevsContract.deploy(metadataUrl, whitelistContract);
+	const deployedContract = await cryptoDevsContract.deploy(metadataUrl, whitelistContract);
 
-    await deployedContract.deployed();
+	await deployedContract.deployed();
 
-    console.log("contract address is: ",  deployedContract);
-
+	console.log('contract address is: ', deployedContract);
 }
-main()
-.then(() => process.exit(0))
-.catch(error => {
-    console.error(error)
-    process.exit(1);   
-})
+main().then(() => process.exit(0)).catch((error) => {
+	console.error(error);
+	process.exit(1);
+});
